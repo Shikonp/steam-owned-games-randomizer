@@ -46,21 +46,3 @@ async def get_game_details(session, app_id):
     except aiohttp.ClientError as e:
         print(f"Request failed for App ID {app_id}: {e}")
         return None
-
-async def main():
-    steam_id = "76561199092235358"
-    async with aiohttp.ClientSession() as session:
-        app_ids = await get_games_appid(session, steam_id)
-
-        if app_ids:
-            tasks = [get_game_details(session, app_id) for app_id in app_ids]
-            games_details = await asyncio.gather(*tasks)
-
-            for game_details in games_details:
-                if game_details:
-                    print(game_details)
-        else:
-            print("No games found or failed to retrieve game list.")
-
-if __name__ == "__main__":
-    asyncio.run(main())
