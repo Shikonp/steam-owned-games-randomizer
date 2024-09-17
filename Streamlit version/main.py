@@ -1,4 +1,4 @@
-from steam_integ_async import get_games_appid, get_game_details
+from get_details import get_games_appid, get_game_details
 import random
 import asyncio
 import aiohttp
